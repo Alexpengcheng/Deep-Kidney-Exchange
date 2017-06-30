@@ -8,7 +8,7 @@ Input Arguments:
 	st_1.csv: file that save the current state
 	control_parameters.txt: file that control the training and running process
 						1st line:'0' load the neural net tf.Variables from the file
-								'1' first time run the code, and need to initialize tf.Variables
+							 '1' first time run the code, and need to initialize tf.Variables
 
 						2nd line: represent the current trajectory number T, when T>Maxtrajectory, train neural net
 						3rd line: Maxtrajectory: the batch size of data used to train the neural net
@@ -19,8 +19,8 @@ Output Arguments:
 	kdnnet.ckpt: Save the tf.Variables of the neural net
 """
 
-#read data from the graph embedding from st.csv
-#the csv last item is NaN, I remove it
+#Read data from the graph embedding from st.csv
+#The csv last item is NaN, I remove it
 initial_state = np.genfromtxt('st_1.csv', delimiter=',')
 length=initial_state.size
 initial_state=initial_state[0:length]
@@ -32,11 +32,11 @@ n_hidden1=20
 n_hidden2=20
 n_output_action=2 #2 actions
 n_output_value=1
-Dicount_factor=0.6 #Discount factor
+Dicount_factor=0.6 #discount factor
 
 Load = np.loadtxt('control.txt')
-First_time = Load[0]#'0' indicate not 1st time run don't need to initialize the Variables
-T = Load[1]#tragectory number
+First_time = Load[0] #'0' indicate not 1st time run and don't need to initialize the Variables
+T = Load[1]#trajectory number
 Maxtrajectory = Load[2]
 
 #tf graph input
@@ -49,7 +49,7 @@ reward_batch=tf.placeholder('float',[Maxtrajectory,1])
 #x: input graph embedding
 #weights and biases: dictionary of neural net weights and biases
 def ff_nnet(x):
-	#hidden layer with ReLU activation
+	#Hidden layer with ReLU activation
 	layer_1=tf.add(tf.matmul(x, weights['h1']), biases['b1'])
 	layer_1=tf.nn.relu(layer_1)
 	layer_2=tf.add(tf.matmul(layer_1, weights['h2']), biases['b1'])
@@ -65,7 +65,7 @@ def ff_nnet(x):
 	return Action_outlayer, Value_outlayer
 
 
-#layers weight and biases initialization
+#Layers weight and biases initialization
 weights={
 	'h1': tf.Variable(tf.random_normal([n_input, n_hidden1]),name='h1'),
 	'h2': tf.Variable(tf.random_normal([n_hidden1, n_hidden2]),name='h2'),
@@ -80,18 +80,18 @@ biases={
 	'b_out_value': tf.Variable(tf.random_normal([n_output_value]),'b_out_value')
 }
 
-#read the control parameters and variables
+#Read the control parameters and variables
 def initiliaze_nnet():
 	global T
 	global First_time
 	global Maxtrajectory
-	#Assume the first number indicate first run the code
+	#Assume the first line indicate if it's the first time to run the code
 	Load=np.loadtxt('control.txt')
 	First_time=Load[0]
 	T=Load[1]
 	Maxtrajectory=Load[2]
 
-	#need to initialize the Tensorflow Variables LATER
+	#Need to initialize the Tensorflow Variables LATER
 	if First_time==1: 
 		Load[0]=0
 		Load[1]=1
@@ -131,10 +131,8 @@ saver = tf.train.Saver()
 
 
 def main():
+	#Initializing the neural net
 	initiliaze_nnet()
-	#Initializing the variables
-	# init=tf.global_variables_initializer()
-	# saver=tf.train.Saver()
 
 	with tf.Session() as sess:
 		if First_time==1:
@@ -142,7 +140,7 @@ def main():
 			print('Model initialiazed')
 			saver.save(sess, "./kdnnet.ckpt")
 			print('Modeled saved\n')
-			# initilaze the state.txt action.txt obj_value.csv
+			# Initialize the state.txt action.txt obj_value.csv
 			with open('state.txt', 'w') as f:
 				f.truncate()
 			with open('action.txt', 'w') as f:
@@ -155,7 +153,7 @@ def main():
 			print("Model restored.\n")
 
 
-		#Train the network when, Save the network variaables, Clear the state, action and rewards file
+		#Train the network when a new batch starts, Save the network variaables, Clear the state, action and rewards file
 		if (T==1)and(First_time!=1):
 			#Load the aciton.txt and state.txt for training
 			train_states,train_actions,train_rewrads=load_file()
@@ -178,8 +176,8 @@ def main():
 			act.close()
 
 def load_file():
-	#load states and actions
-	#note:reach row represent one data
+	#Load states and actions
+	#Note:each row represent one data
 	states=np.loadtxt('state.txt')
 	states=states.reshape(int(Maxtrajectory),n_input)
 
@@ -190,7 +188,7 @@ def load_file():
 	rewards=rewards[0:int(Maxtrajectory)]
 	rewards=rewards.reshape(int(Maxtrajectory),1)
 
-	#clear the states and actions for the new iteration
+	#Clear the states and actions files for the new iteration
 	with open('state.txt','w') as f:
 		f.truncate()
 	with open('action.txt','w') as f:
