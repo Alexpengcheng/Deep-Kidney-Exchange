@@ -118,7 +118,7 @@ def lossfun():
 
 		loss_R=tf.add(loss_R,tf.multiply(tf.log(Paction[0,index]),tf.subtract(R,Pvalue)))
 		loss_V=tf.add(loss_V,tf.square(tf.subtract(R,Pvalue)))
-	return loss_V,loss_R
+	return loss_V,-loss_R
 
 
 #Define the computation graph
