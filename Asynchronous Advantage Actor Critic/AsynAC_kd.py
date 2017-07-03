@@ -130,7 +130,7 @@ init = tf.global_variables_initializer()
 saver = tf.train.Saver()
 
 
-def main():
+def main_nnet():
 	#Initializing the neural net
 	initiliaze_nnet()
 
@@ -153,7 +153,7 @@ def main():
 			print("Model restored.\n")
 
 
-		#Train the network when a new batch starts, Save the network variaables, Clear the state, action and rewards file
+		#Train the network when a new batch starts, Save the network variables, Clear the state, action and rewards file
 		if (T==1)and(First_time!=1):
 			#Load the aciton.txt and state.txt for training
 			train_states,train_actions,train_rewrads=load_file()
@@ -198,4 +198,4 @@ def load_file():
 
 	return states,actions,rewards
 
-main()
+main_nnet()
