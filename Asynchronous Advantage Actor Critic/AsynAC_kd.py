@@ -174,6 +174,8 @@ def main_nnet():
 		with open('action.txt','a') as act:
 			np.savetxt(act,Action)
 			act.close()
+		with open('single action.txt','w') as sa:
+			np.savetxt(sa,Action)
 
 def load_file():
 	#Load states and actions
