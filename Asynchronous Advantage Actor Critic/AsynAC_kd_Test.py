@@ -13,8 +13,8 @@ import scipy.signal
 
 # Network parameters
 n_input=4 #The length of embedding should be specified first since initialization of neural net needs this
-n_hidden1=64
-n_hidden2=64
+n_hidden1=256
+n_hidden2=256
 n_hidden3=4
 n_output_action=2 #2 actions
 n_output_value=1
@@ -135,7 +135,7 @@ class Worker():
         action=np.array(action)
         state=np.array(state)
         # state=np.reshape(state,[Maxtrajectory,4])
-        state = np.reshape(state, [-1, 4])
+        state = np.reshape(state, [-1, n_input])
         reward=np.array(reward)
         value=np.array(value)
         # value=np.reshape(value,[Maxtrajectory,1])
