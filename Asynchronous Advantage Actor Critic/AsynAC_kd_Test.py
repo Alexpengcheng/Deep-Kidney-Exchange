@@ -13,7 +13,7 @@ import scipy.signal
 
 
 # Network parameters
-n_input=4 #The length of embedding should be specified first since initialization of neural net needs this
+n_input=28 #The length of embedding should be specified first since initialization of neural net needs this
 n_hidden1=256
 n_hidden2=256
 n_hidden3=4
@@ -106,7 +106,7 @@ class A3Cnetwork():
 
 class Worker():
     # Define input environment=game
-    def __init__(self, game, name, trainer, model_path, global_episodes):
+    def __init__(self, name, trainer, model_path, global_episodes):
         self.name= 'worker_'+str(name)
         self.number=name
         self.model_path = model_path
@@ -128,7 +128,7 @@ class Worker():
         self.update_local_ops = update_target_graph('global', self.name)
 
         # Create the RL environment
-        self.env=game
+        self.env=gym.make('kidney-v0')
 
     # Calculate the Advantage, Discounted rewards and update the neural net
     def train(self, action, state, reward, value, bootstrap, sess):
@@ -209,7 +209,7 @@ class Worker():
 
                         # Sample an action based on the action distribution
                         choices=np.array([0,1])
-                        print out_action, out_value
+                        print(out_action, out_value)
                         a=np.random.choice(choices,p=out_action[0,:])
 
                         # Store the episodes as list in python
@@ -218,7 +218,7 @@ class Worker():
                         value.append(out_value)
 
                         # Interact with the environment
-                        observation, r, done, info = env.step(a)
+                        observation, r, done, info = self.env.step(a)
                         observation = np.reshape(observation, [1, n_input])
 
                         reward.append(r)
@@ -283,7 +283,6 @@ class Worker():
                 coord.request_stop()
 
 #import the environment from OPENAI
-env = gym.make('kidney-v0')
 
 tf.reset_default_graph()
 
@@ -300,7 +299,7 @@ with tf.device("/cpu:0"):
     # Generate workers
     workers=[]
     for i in range(num_workers):
-        workers.append(Worker(env,i,trainer,model_path,global_episodes))
+        workers.append(Worker(i,trainer,model_path,global_episodes))
     saver=tf.train.Saver(max_to_keep=5)
 
 with tf.Session() as sess:
