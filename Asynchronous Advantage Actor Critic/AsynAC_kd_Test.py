@@ -6,6 +6,7 @@ import threading
 import multiprocessing
 import os
 import gym
+import gym_kidney
 from time import sleep
 import scipy.signal
 
