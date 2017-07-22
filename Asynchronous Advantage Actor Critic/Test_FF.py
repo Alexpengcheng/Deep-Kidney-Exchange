@@ -31,6 +31,8 @@ kidney={
     'rate':25,
     'k':50
 }
+
+# Choose the test model
 MODEL=homogeneous
 MODEL_NAME='homogeneous'
 
