@@ -51,6 +51,7 @@ load_model=False
 Maxtrajectory=200
 Maxtrain=1000
 Clip_norm=40.0
+Learning_rate=1e-4
 model_path='./model/a3c/'+MODEL_NAME
 
 # Functions used to transfer the data between the local and global network
@@ -331,7 +332,7 @@ if not os.path.exists(model_path):
 with tf.device("/cpu:0"):
     global_episodes = tf.Variable(0, dtype=tf.int32, name='global_episodes', trainable=False)
     rate = tf.train.exponential_decay(0.005, global_episodes, 100, 0.5)
-    trainer = tf.train.AdamOptimizer(learning_rate=1e-4)
+    trainer = tf.train.AdamOptimizer(learning_rate=Learning_rate)
     # Generate the global network as the container
     master_network=A3Cnetwork('global',None)
     num_workers = multiprocessing.cpu_count()  # Set workers ot number of available CPU threads
