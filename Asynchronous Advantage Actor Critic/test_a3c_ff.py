@@ -338,7 +338,7 @@ with tf.device("/cpu:0"):
 
     # Generate workers
     workers=[]
-    for i in range(1):
+    for i in range(num_workers):
         workers.append(Worker(i,trainer,model_path,global_episodes))
     saver=tf.train.Saver(max_to_keep=5)
 
