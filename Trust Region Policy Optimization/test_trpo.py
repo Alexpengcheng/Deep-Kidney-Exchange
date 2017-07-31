@@ -31,9 +31,16 @@ heterogeneous={
     'p_a':0.1,
 }
 kidney={
-    'tau': 7,
-    'rate':25,
-    'k':50
+    'seed':2618,
+    'tau':5,
+    'alpha':0.05,
+    't':3,
+    'cycle_cap':3,
+    'chain_cap':3,
+    'k':24,
+    'm':580,
+    "data": "/Users/PengchengXu/deep36/test_ppo/data_adj.csv",
+	"details": "/Users/PengchengXu/deep36/test_ppo/data_details.csv"
 }
 contrived={
     'tau': 6
