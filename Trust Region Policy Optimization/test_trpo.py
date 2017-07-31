@@ -40,7 +40,7 @@ kidney={
     'k':24,
     'm':580,
     "data": "/Users/PengchengXu/deep36/test_ppo/data_adj.csv",
-	"details": "/Users/PengchengXu/deep36/test_ppo/data_details.csv"
+    "details": "/Users/PengchengXu/deep36/test_ppo/data_details.csv"
 }
 contrived={
     'tau': 6
