@@ -30,13 +30,28 @@ heterogeneous={
     'p_a':0.1,
 }
 kidney={
-    'tau': 7,
-    'rate':25,
-    'k':50
-}
+    'seed':2618,
+    'tau':7,
+    'alpha':0.05,
+    't':3,
+    'cycle_cap':3,
+    'chain_cap':3,
+    'k':720,
+    'm':580,
+    "data": "path_to_the file_data_adj.csv",
+	"details": "path_to_the_file_data_details.csv"
+
 contrived={}
 MODEL=homogeneous
 MODEL_NAME='contrived'
+NN="A3C"
+PARAM = {
+	"layers": 4,
+	"learning_rate": 1e-5,
+	"buffer_size": 50000,
+	"exploration_fraction": 0.1,
+	"exploration_final_eps": 0.02
+}
 
 # Network parameters
 n_input=MODEL['tau']**2+MODEL['tau'] #The length of embedding should be specified first since initialization of neural net needs this
