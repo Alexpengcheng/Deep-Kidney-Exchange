@@ -8,7 +8,7 @@ The repository is the implementation of deep rereinforcement learning algorithm 
 * [OpenMPI](https://www.open-mpi.org/)
 * [Mpi4y](https://pypi.python.org/pypi/mpi4py)
 * [Spams](http://spams-devel.gforge.inria.fr/downloads.html)
-* [OpenBLAS](http://www.netlib.org/blas/)
+* [BLAS](http://www.netlib.org/blas/)
 * [Gurobi](http://www.gurobi.com/downloads/gurobi-optimizer)
 * Tensorflow
 * NumPy
