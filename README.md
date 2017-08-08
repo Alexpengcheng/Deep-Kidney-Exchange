@@ -8,7 +8,8 @@ The repository is the implementation of deep rereinforcement learning algorithm 
 * [OpenMPI](https://www.open-mpi.org/)
 * [Mpi4y](https://pypi.python.org/pypi/mpi4py)
 * [Spams](http://spams-devel.gforge.inria.fr/downloads.html)
-* [Gurobi]()
+* [OpenBLAS](http://www.netlib.org/blas/)
+* [Gurobi](http://www.gurobi.com/downloads/gurobi-optimizer)
 * Tensorflow
 * NumPy
 * SciPy
@@ -22,6 +23,12 @@ Note: If you have a issue with the Mpi4y,you may have to set the environment var
 ```
 export TMPDIR=/tmp
 ```
+If you use multithreading program and OpenBLAS at the same time, you may have to change the environment variable of OpenBLAS multihreading since it may controdict with your original multithreading setting.
+
+`export OPENBLAS_NUM_THREADS=1` in the environment variables. Or
+Call `openblas_set_num_threads(1)` in the application on runtime. Or
+Build OpenBLAS single thread version, e.g. `make USE_THREAD=0`
+
 ## Reference
 * [Arthur Juliani's A3C Doom implementation](https://github.com/awjuliani/DeepRL-Agents/blob/master/A3C-Doom.ipynb)
 * [OpenAI baselines](https://github.com/openai/baselines)
