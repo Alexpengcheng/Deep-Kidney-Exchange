@@ -7,6 +7,7 @@ The repository is the implementation of deep rereinforcement learning algorithm 
 * [OpenAI baselines](https://github.com/openai/baselines)
 * [OpenMPI](https://www.open-mpi.org/)
 * [Mpi4y](https://pypi.python.org/pypi/mpi4py)
+* [Spams](http://spams-devel.gforge.inria.fr/downloads.html)
 * [Gurobi]()
 * Tensorflow
 * NumPy
