@@ -8,6 +8,9 @@ import gym_kidney
 
 # Environment parameters
 env_id="kidney-v0"
+EXP = 0
+OUT = "/test_ppo/model"
+FREQ = 1
 homogeneous={
     'tau':7,
     'rate':9,
@@ -25,15 +28,23 @@ heterogeneous={
     'p_a':0.1,
 }
 kidney={
-    'tau': 7,
-    'rate':25,
-    'k':50
+    'seed':2618,
+    'tau':7,
+    'alpha':0.05,
+    't':5,
+    'cycle_cap':3,
+    'chain_cap':3,
+    'k':120,
+    'm':30,
+    "data": "/Users/PengchengXu/deep36/test_ppo/data_adj.csv",
+	"details": "/Users/PengchengXu/deep36/test_ppo/data_details.csv",
+    "d_path":"/Users/PengchengXu/deep36/dictionary.tar.gz"
 }
 contrived={
-    'tau': 6
+    'tau': 7
 }
 MODEL=contrived
-MODEL_NAME="contrived"
+MODEL_NAME="kidney"
 
 # Training parameters
 hidden_layers=4
