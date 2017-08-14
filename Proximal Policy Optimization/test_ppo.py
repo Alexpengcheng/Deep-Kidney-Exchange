@@ -44,7 +44,7 @@ contrived={
     'tau': 7
 }
 MODEL=contrived
-MODEL_NAME="kidney"
+MODEL_NAME="contrived"
 
 # Training parameters
 hidden_layers=4
