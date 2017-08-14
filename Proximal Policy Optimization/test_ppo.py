@@ -9,7 +9,7 @@ import gym_kidney
 # Environment parameters
 env_id="kidney-v0"
 EXP = 0
-OUT = "/test_ppo/model"
+OUT = "/home/alexxu/deepkidney/Deep-Kidney-Exchange/Proximal Policy Optimization/pposummary"
 FREQ = 1
 homogeneous={
     'tau':7,
@@ -36,9 +36,9 @@ kidney={
     'chain_cap':3,
     'k':120,
     'm':30,
-    "data": "/Users/PengchengXu/deep36/test_ppo/data_adj.csv",
-	"details": "/Users/PengchengXu/deep36/test_ppo/data_details.csv",
-    "d_path":"/Users/PengchengXu/deep36/dictionary.tar.gz"
+    "data": "/home/alexxu/data_adj.csv",
+	"details": "/home/alexxu/data_details.csv",
+    "d_path":"/home/alexxu/dictionary.tar.gz"
 }
 contrived={
     'tau': 7
@@ -61,7 +61,7 @@ optim_batchsize=50 # should be smaller than timesteps_per_batch
 gamma=0.99
 lam=0.95
 
-model_path='./model/ppo/'+MODEL_NAME
+model_path="/home/alexxu/deepkidney/Deep-Kidney-Exchange/Proximal Policy Optimization/model"+MODEL_NAME
 load_model=True
 
 
