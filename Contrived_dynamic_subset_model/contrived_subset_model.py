@@ -60,8 +60,8 @@ class Contrived_subset():
     def step(self,action):
         '''
         sequential actions:
-        1. introduce the incoming vertices
-        2. match and return rewards
+        1. match and return rewards
+        2. introduce the incoming vertices
         3. increase time t
         '''
 
