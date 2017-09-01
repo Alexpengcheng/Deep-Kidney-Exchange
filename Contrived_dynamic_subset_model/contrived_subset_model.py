@@ -52,8 +52,8 @@ class Contrived_subset():
 
         else:
             self.__reward = self.__Vco
-            self.__Vco = 0
             self.__Vnc = self.__Vnc - self.__Vco
+            self.__Vco = 0
 
         return self.__reward
 
