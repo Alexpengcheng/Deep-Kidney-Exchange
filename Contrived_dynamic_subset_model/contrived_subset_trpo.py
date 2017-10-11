@@ -11,7 +11,8 @@ import trpo_indi
 import spams
 import sys
 import gym
-from gym.wrappers.ConfigWrapper import SubsetWrapper
+import envs
+from envs.wrapper.ConfigWrapper import SubsetWrapper
 
 
 MODEL_NAME="Contrived_subset-v0"
