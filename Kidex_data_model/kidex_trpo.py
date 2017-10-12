@@ -4,7 +4,7 @@ import os.path as osp
 import os
 import logging
 from baselines import logger
-from baselines.pposgd.mlp_policy import MlpPolicy
+from baselines.ppo1.mlp_policy import MlpPolicy
 from baselines.common.mpi_fork import mpi_fork
 from baselines import bench
 from baselines.trpo_mpi import trpo_mpi
