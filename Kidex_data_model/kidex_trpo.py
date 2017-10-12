@@ -59,9 +59,7 @@ def train(env_id, num_timesteps, seed, model_path, load_model,
                          ac_space=env.action_space,
                          hid_size=hidden_units,
                          num_hid_layers=hidden_layers)
-    env = bench.Monitor(env, osp.join(logger.get_dir(), "%i.monitor.json" % rank))
     env.seed(workerseed)
-    gym.logger.setLevel(logging.WARN)
 
     trpo_indi.learn(env, policy_fn,
                    timesteps_per_batch=timesteps_per_batch,
