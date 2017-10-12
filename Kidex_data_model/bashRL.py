@@ -5,10 +5,10 @@ import os
 Automatically distribute the RL experiment
 '''
 
-M: [32, 64, 128, 256]
-K: [32, 128, 512]
-CYCLE_CAP: [2, 3, 4]
-CHAIN_CAP: [0, 3, 6, 9]
+M= [32, 64, 128, 256]
+K= [32, 128, 512]
+CYCLE_CAP= [2, 3, 4]
+CHAIN_CAP= [0, 3, 6, 9]
 SAMPLE = 5
 CHAINSAMPLE = 3
 CYCLESAMPLE = 3
