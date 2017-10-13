@@ -9,7 +9,7 @@ M= [32, 64, 128, 256]
 K= [32, 128, 512]
 CYCLE_CAP= [2, 3, 4]
 CHAIN_CAP= [0, 3, 6, 9]
-SAMPLE = 5
+SAMPLE = 9
 CHAINSAMPLE = 3
 CYCLESAMPLE = 3
 TAU = 5
@@ -30,5 +30,5 @@ for m in M:
                         '--cyclesampl %s '
                         '--tau %s '
                         '--alpha %s '
-                          '>M%sK%sChain%sCycle%s &' % (cycle, chain, m, k, SAMPLE, CHAINSAMPLE, CYCLESAMPLE, TAU, ALPHA,
+                          '>M%sK%sChain%sCycle%s &' % (cycle, chain, m, k, SAMPLE, chain, cycle, TAU, ALPHA,
                                                        m,k,chain,cycle))
