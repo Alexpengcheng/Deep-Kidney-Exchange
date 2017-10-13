@@ -80,8 +80,8 @@ def main():
     import argparse
     parser = argparse.ArgumentParser(formatter_class=argparse.ArgumentDefaultsHelpFormatter)
     parser.add_argument('--loadmodel', help='Load the Neural Net', type=bool, default=False)
-    parser.add_argument('--trainsize', help='Training trajecotries', type=int, default=20000)
-    parser.add_argument('--batchsize', help='Batch time steps in each update', type=int, default=20000)
+    parser.add_argument('--trainsize', help='Training trajecotries', type=int, default=40000)
+    parser.add_argument('--batchsize', help='Batch time steps in each update', type=int, default=40000)
     parser.add_argument('--hiddenunit', help='Hidden units for each layer in Neural Net', type=int, default=200)
     parser.add_argument('--hiddenlayers', help='Hidden layers for each layer in Neural Net', type=int, default=4)
 
