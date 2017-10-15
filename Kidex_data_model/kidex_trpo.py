@@ -90,7 +90,7 @@ def main():
     parser.add_argument('--action', help='action space', type=str, default='flap')
     parser.add_argument('--M', help='Cardinality', type=int, default=32)
     parser.add_argument('--K', help='Match frequency', type=int, default=32)
-    parser.add_argument('--LEN', help='length ', type=int, default=2000)
+    parser.add_argument('--LEN', help='length ', type=int, default=3000)
 
     parser.add_argument('--sample', help='sample length ', type=int, default=5)
     parser.add_argument('--chainsample', help='sample cap of chain ', type=int, default=2)
