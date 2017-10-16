@@ -143,7 +143,7 @@ def main():
     # Model constants
     M = args.M
     K = args.K
-    LEN = args.LEN
+    LEN = 3*K
     DET_PATH = './data_details.csv'
     ADJ_PATH = './data_adj.csv'
     MODEL = models.DataModel(M, K, ADJ_PATH, DET_PATH, LEN)
