@@ -110,13 +110,14 @@ def main():
     SHOW = False
 
     # Action constants
+    W_FUN = lambda o1, o2: 1 - 0.5 * (o1 + o2)
     CYCLE_CAP = args.cyclecap
     CHAIN_CAP = args.chaincap
     action = args.action
     if action == 'flap':
         ACTION = actions.FlapAction(CYCLE_CAP, CHAIN_CAP)
     elif action == 'blood':
-        ACTION = actions.BloodAction(CYCLE_CAP, CHAIN_CAP)
+        ACTION = actions.BloodAction(CYCLE_CAP, CHAIN_CAP, -4, 4, W_FUN)
     else:
         raise NotImplementedError
 
@@ -132,7 +133,7 @@ def main():
 
     embed = []
     scale = []
-    normal = [0,0,0,0, 0,0,1,0]
+    normal = [0.05,0.05,0.02,0.02, 0.02,0,1,0]
     for i in range(len(all_embedding)):
         if normal[i] != 0:
             embed.append(all_embedding[i])
