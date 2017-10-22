@@ -15,7 +15,7 @@ CYCLESAMPLE = 3
 TAU = 5
 ALPHA = 0.05
 layers = 7
-
+action = 'flap'
 
 for m in M:
     for k in K:
@@ -27,10 +27,11 @@ for m in M:
                         '--M %s '
                         '--K %s '
                         '--hiddenlayers %s'
+                        '--action %s'
                         '--sample %s '
                         '--chainsample %s '
                         '--cyclesampl %s '
                         '--tau %s '
                         '--alpha %s '
-                          '>M%sK%sChain%sCycle%s &' % (cycle, chain, m, k, layers, SAMPLE, chain, cycle, TAU, ALPHA,
+                          '>M%sK%sChain%sCycle%s &' % (cycle, chain, m, k, layers, action, SAMPLE, chain, cycle, TAU, ALPHA,
                                                        m,k,chain,cycle))
