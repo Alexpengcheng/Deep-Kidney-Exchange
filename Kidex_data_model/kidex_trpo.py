@@ -81,7 +81,7 @@ def main():
     parser = argparse.ArgumentParser(formatter_class=argparse.ArgumentDefaultsHelpFormatter)
     parser.add_argument('--loadmodel', help='Load the Neural Net', type=bool, default=False)
     parser.add_argument('--trainsize', help='Training trajecotries', type=int, default=40000)
-    parser.add_argument('--batchsize', help='Batch time steps in each update', type=int, default=40000)
+    parser.add_argument('--batchsize', help='Batch time steps in each update', type=int, default=400000)
     parser.add_argument('--hiddenunit', help='Hidden units for each layer in Neural Net', type=int, default=200)
     parser.add_argument('--hiddenlayers', help='Hidden layers for each layer in Neural Net', type=int, default=4)
 
@@ -133,7 +133,7 @@ def main():
 
     embed = []
     scale = []
-    normal = [0.05,0.05,0.02,0.02, 0.02,0,1,0]
+    normal = [0.05,0.05,0.02,0.02, 0.02,0,0.02,0]
     for i in range(len(all_embedding)):
         if normal[i] != 0:
             embed.append(all_embedding[i])
