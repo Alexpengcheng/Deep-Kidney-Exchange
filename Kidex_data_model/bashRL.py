@@ -14,6 +14,7 @@ CHAINSAMPLE = 3
 CYCLESAMPLE = 3
 TAU = 5
 ALPHA = 0.05
+layers = 7
 
 
 for m in M:
@@ -25,10 +26,11 @@ for m in M:
                         '--chaincap %s '
                         '--M %s '
                         '--K %s '
+                        '--hiddenlayers %s'
                         '--sample %s '
                         '--chainsample %s '
                         '--cyclesampl %s '
                         '--tau %s '
                         '--alpha %s '
-                          '>M%sK%sChain%sCycle%s &' % (cycle, chain, m, k, SAMPLE, chain, cycle, TAU, ALPHA,
+                          '>M%sK%sChain%sCycle%s &' % (cycle, chain, m, k, layers, SAMPLE, chain, cycle, TAU, ALPHA,
                                                        m,k,chain,cycle))
