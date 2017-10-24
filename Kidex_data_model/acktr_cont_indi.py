@@ -36,7 +36,6 @@ def rollout(env, policy, max_pathlength, animate=False, obfilter=None):
         scaled_ac = env.action_space.low + (ac + 1.) * 0.5 * (env.action_space.high - env.action_space.low)
         scaled_ac = np.clip(scaled_ac, env.action_space.low, env.action_space.high)
         ob, rew, done, _ = env.step(scaled_ac)
-        print ("observa",ob)
         if obfilter: ob = obfilter(ob)
         rewards.append(rew)
         if done:
