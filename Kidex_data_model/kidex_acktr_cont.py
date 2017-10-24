@@ -8,8 +8,8 @@ from baselines import logger
 from baselines.common import set_global_seeds
 from baselines import bench
 from acktr_cont_indi import learn
-from baselines.acktr.policies import GaussianMlpPolicy
-from baselines.acktr.value_functions import NeuralNetValueFunction
+from acktr_policies import GaussianMlpPolicy
+from acktr_valuefunction import NeuralNetValueFunction
 import gym_kidney
 from gym_kidney import actions, embeddings, \
 	models, loggers, wrappers
@@ -19,7 +19,7 @@ def train(env_id, num_timesteps, seed, timesteps_per_batch, hidden_layers, hidde
 
     env = gym.make(env_id)
     print ('env.spec.timestep_limit:',env.spec.timestep_limit)
-    # env = wrappers.ConfigWrapper(env, ACTION, EMBEDDING, MODEL, LOGGING)
+    env = wrappers.ConfigWrapper(env, ACTION, EMBEDDING, MODEL, LOGGING)
     if logger.get_dir():
         env = bench.Monitor(env, os.path.join(logger.get_dir(), "monitor.json"))
     set_global_seeds(seed)
@@ -30,9 +30,9 @@ def train(env_id, num_timesteps, seed, timesteps_per_batch, hidden_layers, hidde
         ob_dim = env.observation_space.shape[0]
         ac_dim = env.action_space.shape[0]
         with tf.variable_scope("vf"):
-            vf = NeuralNetValueFunction(ob_dim, ac_dim)
+            vf = NeuralNetValueFunction(ob_dim, ac_dim, hidden_layers, hidden_units)
         with tf.variable_scope("pi"):
-            policy = GaussianMlpPolicy(ob_dim, ac_dim)
+            policy = GaussianMlpPolicy(ob_dim, ac_dim, hidden_layers, hidden_units)
 
         learn(load_model=load_model, model_path=model_path, env=env, policy=policy, vf=vf,
             gamma=0.99, lam=0.97, timesteps_per_batch=timesteps_per_batch,
@@ -49,9 +49,9 @@ def main():
     parser = argparse.ArgumentParser(formatter_class=argparse.ArgumentDefaultsHelpFormatter)
     parser.add_argument('--loadmodel', help='Load the Neural Net', type=bool, default=False)
     parser.add_argument('--trainsize', help='Training trajecotries', type=int, default=1e6)
-    parser.add_argument('--batchsize', help='Batch time steps in each update', type=int, default=2500)
+    parser.add_argument('--batchsize', help='Batch time steps in each update', type=int, default=1000)
     parser.add_argument('--hiddenunit', help='Hidden units for each layer in Neural Net', type=int, default=64)
-    parser.add_argument('--hiddenlayers', help='Hidden layers for each layer in Neural Net', type=int, default=3)
+    parser.add_argument('--hiddenlayers', help='Hidden layers for each layer in Neural Net', type=int, default=2)
 
     parser.add_argument('--cyclecap', help='cyclecap', type=int, default=2)
     parser.add_argument('--chaincap', help='chaincap', type=int, default=2)
@@ -73,7 +73,7 @@ def main():
     Environment Parameters Setting
     '''
     env_id = "MountainCarContinuous-v0"
-
+    env_id = "kidney-v0"
     # Local constants
     SHOW = False
 
@@ -101,7 +101,7 @@ def main():
 
     embed = []
     scale = []
-    normal = [0.05,0.005,0.02,0.02, 0.02,0,0.02,0]
+    normal = [0.05,0.005,0.002,0.004, 0.02,0,0.004,0]
 
     for i in range(len(all_embedding)):
         if normal[i] != 0:
@@ -116,7 +116,7 @@ def main():
     LEN = 3*K
     DET_PATH = './data_details.csv'
     ADJ_PATH = './data_adj.csv'
-    MODEL = models.DataModel(M, K, ADJ_PATH, DET_PATH, LEN)
+    MODEL = models.SparseModel(M, K, 0.7, ADJ_PATH, DET_PATH, LEN)
 
     # Logging constants
     os.system('mkdir ./record/M%sK%sCycle%sChain%sAction%sEmbed'% (M, K, CYCLE_CAP, CHAIN_CAP,action))
