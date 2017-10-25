@@ -123,8 +123,8 @@ def main():
 
     # Embedding constants
     SAMPLE_LENGTH = args.sample
-    CHAIN_SAMPLE = args.chainsample
-    CYCLE_SAMPLE = args.cyclesample
+    CHAIN_SAMPLE = CHAIN_CAP
+    CYCLE_SAMPLE = CYCLE_CAP
     TAU = args.tau
     ALPHA = args.alpha
     all_embedding = [embeddings.ChainEmbedding(CHAIN_SAMPLE),embeddings.CycleFixedEmbedding(SAMPLE_LENGTH,CYCLE_SAMPLE),embeddings.CycleVariableEmbedding(1,SAMPLE_LENGTH,CYCLE_SAMPLE),
