@@ -90,9 +90,9 @@ def main():
         raise NotImplementedError
 
     # Embedding constants
-    SAMPLE_LENGTH = args.sample
-    CHAIN_SAMPLE = args.chainsample
-    CYCLE_SAMPLE = args.cyclesample
+    SAMPLE_LENGTH = CHAIN_CAP + CYCLE_CAP
+    CHAIN_SAMPLE = CHAIN_CAP + 1
+    CYCLE_SAMPLE = CYCLE_CAP + 1
     TAU = args.tau
     ALPHA = args.alpha
     all_embedding = [embeddings.ChainEmbedding(CHAIN_SAMPLE),embeddings.CycleFixedEmbedding(SAMPLE_LENGTH,CYCLE_SAMPLE),embeddings.CycleVariableEmbedding(1,SAMPLE_LENGTH,CYCLE_SAMPLE),
