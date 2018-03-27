@@ -1,5 +1,5 @@
 # Deep-Kidney-Exchange
-The repository implements the deep RL TRPO with LSTM on Kidney Exchange based on Tensorflow. The Kidney Exchange simulator based on the OpenAI Gym can be found [here](https://github.com/camoy/gym-kidney). A simplified dynamic set packing model can be found[here](https://github.com/Pengchengpcx/Dynamic-Set-Packing).
+The repository implements the deep RL TRPO with LSTM on Kidney Exchange based on Tensorflow. The Kidney Exchange simulator based on the OpenAI Gym can be found [here](https://github.com/camoy/gym-kidney). A simplified dynamic set packing model can be found [here](https://github.com/Pengchengpcx/Dynamic-Set-Packing).
 ## Dependencies
 * Python3
 * [OpenAI Gym](https://github.com/openai/gym)
